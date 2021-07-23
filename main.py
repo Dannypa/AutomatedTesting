@@ -109,7 +109,8 @@ def main():
     print("I remember tests you've inputted and make it easier to retest your program - you don't have to copy and "
           "paste tests from site with a problem million times:)")
     print("Something about me:\n"
-          "1. As it should be obvious from the name of repository, I work only with c++ files.\n"
+          "1. I work only with c++ files and use g++, so make sure it is installed (just run 'g++ --version' to "
+          "see if g++ is installed).\n"
           "2. The main method in your c++ file should start with 'int main(', without any additional words between "
           "those. Spaces are allowed:)\n"
           "3. I use file input/output for testing, so I most probably will work incorrectly if your program uses "
