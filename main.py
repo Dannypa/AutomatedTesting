@@ -69,8 +69,10 @@ def is_integer(a: str) -> bool:
     return True
 
 
-def build(cpp_name: str) -> None:
+def build(cpp_name: str) -> bool:
     """Copy the source c++ file into 'testing.cpp' with file IO added and build testing file."""
+    if not os.path.isfile(cpp_name):
+        return False
     with open(cpp_name, 'r') as fin, open("testing.cpp", 'w') as fout:
         fout.write("#include <cstdio>\n")
         for line in fin.readlines():
@@ -80,6 +82,7 @@ def build(cpp_name: str) -> None:
                 fout.write('freopen("testing.in", "r", stdin);\n'
                            'freopen("testing.out", "w", stdout);\n')
     os.system("g++ testing.cpp -o testing.o")
+    return True
 
 
 def add_test(tests: list, test_case_number: int) -> None:
@@ -122,8 +125,10 @@ def main():
     print("With that being said, good luck^)")
     print("Just do things I ask.")
     while True:
-        name = input("Input full path to c++ file, please\n>> ")
-        build(name)
+        name = input("Input path to c++ file, please\n>> ")
+        while not build(name):
+            print("I can't find that...")
+            name = input("Try something else, please\n>>")
         number_of_tests = input("How many tests will there be (number)?\n>> ")
         while not is_integer(number_of_tests):
             number_of_tests = input("Input a number, please!\n>> ")
